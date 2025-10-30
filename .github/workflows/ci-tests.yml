@@ -3,9 +3,9 @@ name: CI — Tests & Coverage
 on:
   push:
     # Run on main and any ci/* branches so CI fixes can be validated on feature branches
-    branches: [ main, 'ci/docs-tests-fixes' ]
+    branches: [ main, 'ci/**' ]
   pull_request:
-    branches: [ main, 'ci/docs-tests-fixes' ]
+    branches: [ main, 'ci/**' ]
   # Allow manual runs from the Actions UI (handy for debugging CI on feature branches)
   workflow_dispatch:
 
@@ -78,6 +78,16 @@ jobs:
           uv sync
           # Install development dependencies (pytest, pytest-cov, httpx, etc.)
           uv pip install --system ".[dev]"
+      - name: Run DB migrations
+        run: alembic upgrade head
+        env:
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_NAME: outer_ring_test
+          DB_USER: user
+          DB_PASSWORD: password
+          DB_ROOT_PASSWORD: rootpassword
+          PYTHONPATH: .
       - name: Run integration tests (produce coverage files)
         env:
           COVERAGE_FILE: .coverage.integration
