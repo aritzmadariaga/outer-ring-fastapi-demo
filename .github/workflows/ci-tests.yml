@@ -29,6 +29,12 @@ jobs:
       - name: Run unit tests (produce coverage files)
         env:
           COVERAGE_FILE: .coverage.unit
+          # Provide DB env vars so Settings() can initialize during imports in CI
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_USER: user
+          DB_PASSWORD: password
+          DB_NAME: outer_ring
         run: |
           pytest --cov=src --cov-report=xml:coverage-unit.xml tests/unit
       - name: Upload unit coverage artifacts
