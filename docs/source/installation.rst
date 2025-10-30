@@ -15,6 +15,6 @@ To install and run the project locally or in Docker:
 .. code-block:: bash
 
    uv pip install --system '.[dev]'
-   uvicorn src.app.main:app --reload
+   uvicorn app.main:app --reload
 
 For more details, see the README.md.
