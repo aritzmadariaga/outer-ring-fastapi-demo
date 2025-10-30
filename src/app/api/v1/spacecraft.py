@@ -15,7 +15,18 @@ from src.app.db.dependencies import get_db
 
 router = APIRouter()
 
-@router.post("/", response_model=SpacecraftInDB)
+@router.post(
+    "/",
+    response_model=SpacecraftInDB,
+    tags=["Spacecraft"],
+    summary="Create a new spacecraft",
+    description="Creates a new spacecraft in the database with the provided details.",
+    responses={
+        201: {"description": "Spacecraft created successfully."},
+        400: {"description": "Invalid input."},
+        409: {"description": "Spacecraft with this registry code already exists."}
+    }
+)
 def create_spacecraft(spacecraft: SpacecraftCreate, db: Session = Depends(get_db)):
     """
     Create a new spacecraft.
@@ -30,7 +41,17 @@ def create_spacecraft(spacecraft: SpacecraftCreate, db: Session = Depends(get_db
     service = SpacecraftService(db)
     return service.create_spacecraft(spacecraft)
 
-@router.get("/{spacecraft_id}", response_model=SpacecraftInDB)
+@router.get(
+    "/{spacecraft_id}",
+    response_model=SpacecraftInDB,
+    tags=["Spacecraft"],
+    summary="Get a spacecraft by ID",
+    description="Retrieve a spacecraft by its unique database ID.",
+    responses={
+        200: {"description": "Spacecraft found and returned."},
+        404: {"description": "Spacecraft not found."}
+    }
+)
 def read_spacecraft(spacecraft_id: int, db: Session = Depends(get_db)):
     """
     Retrieve a spacecraft by its ID.
@@ -51,7 +72,16 @@ def read_spacecraft(spacecraft_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Spacecraft not found")
     return db_spacecraft
 
-@router.get("/", response_model=list[SpacecraftInDB])
+@router.get(
+    "/",
+    response_model=list[SpacecraftInDB],
+    tags=["Spacecraft"],
+    summary="List all spacecrafts",
+    description="List all spacecrafts with pagination support.",
+    responses={
+        200: {"description": "List of spacecrafts returned."}
+    }
+)
 def read_spacecrafts(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     """
     List all spacecrafts with pagination.
@@ -67,7 +97,18 @@ def read_spacecrafts(skip: int = 0, limit: int = 100, db: Session = Depends(get_
     service = SpacecraftService(db)
     return service.get_all_spacecrafts(skip, limit)
 
-@router.put("/{spacecraft_id}", response_model=SpacecraftInDB)
+@router.put(
+    "/{spacecraft_id}",
+    response_model=SpacecraftInDB,
+    tags=["Spacecraft"],
+    summary="Update a spacecraft",
+    description="Update an existing spacecraft by its ID.",
+    responses={
+        200: {"description": "Spacecraft updated successfully."},
+        404: {"description": "Spacecraft not found."},
+        400: {"description": "Invalid input."}
+    }
+)
 def update_spacecraft(spacecraft_id: int, spacecraft: SpacecraftUpdate, db: Session = Depends(get_db)):
     """
     Update an existing spacecraft by its ID.
@@ -89,7 +130,17 @@ def update_spacecraft(spacecraft_id: int, spacecraft: SpacecraftUpdate, db: Sess
         raise HTTPException(status_code=404, detail="Spacecraft not found")
     return db_spacecraft
 
-@router.delete("/{spacecraft_id}", response_model=SpacecraftInDB)
+@router.delete(
+    "/{spacecraft_id}",
+    response_model=SpacecraftInDB,
+    tags=["Spacecraft"],
+    summary="Delete a spacecraft",
+    description="Delete a spacecraft by its ID.",
+    responses={
+        200: {"description": "Spacecraft deleted successfully."},
+        404: {"description": "Spacecraft not found."}
+    }
+)
 def delete_spacecraft(spacecraft_id: int, db: Session = Depends(get_db)):
     """
     Delete a spacecraft by its ID.

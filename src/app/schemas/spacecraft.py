@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Optional
 
@@ -7,13 +7,13 @@ class SpacecraftBase(BaseModel):
     """
     Base schema for spacecraft data.
     """
-    registry_code: str  #: :no-index:
-    name: str  #: :no-index:
-    manufacturer: Optional[str] = None  #: :no-index:
-    crew_capacity: Optional[int] = None  #: :no-index:
-    max_delta_v: Optional[int] = None  #: :no-index:
-    operational: bool = True  #: :no-index:
-    first_flight_at: Optional[datetime] = None  #: :no-index:
+    registry_code: str = Field(..., description="Unique registry code for the spacecraft.", example="OR-001")
+    name: str = Field(..., description="Name of the spacecraft.", example="Outer Explorer")
+    manufacturer: Optional[str] = Field(None, description="Manufacturer of the spacecraft.", example="Deusto")
+    crew_capacity: Optional[int] = Field(None, description="Maximum crew capacity.", example=5)
+    max_delta_v: Optional[int] = Field(None, description="Maximum delta-v (m/s).", example=12000)
+    operational: bool = Field(True, description="Whether the spacecraft is operational.", example=True)
+    first_flight_at: Optional[datetime] = Field(None, description="Date of first flight.", example="2025-10-30T00:00:00Z")
 
 class SpacecraftCreate(SpacecraftBase):
     """
