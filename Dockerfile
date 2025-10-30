@@ -13,6 +13,7 @@ COPY pyproject.toml ./
 # Install all dependencies from pyproject.toml to the system python
 # We install the 'dev' dependencies as well to have tools like pytest available
 RUN uv pip install --system '.[dev]'
+RUN uv pip install --system -e .
 
 # 3. Runtime Stage
 FROM python:3.12-slim as runtime
@@ -22,11 +23,9 @@ ENV PYTHONUNBUFFERED=1 \
 COPY --from=deps /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=deps /usr/local/bin /usr/local/bin
 # Copy application source code
-COPY src/ /app/src/
+# COPY src/ /app/src/
 # Create a non-root user to run the application
-RUN useradd --create-home --shell /bin/bash appuser
-# Change ownership of the app directory to the new user
-RUN chown -R appuser:appuser /app
+RUN useradd --create-home --shell /bin/bash appuser && mkdir -p /app && chown -R appuser:appuser /app
 USER appuser
 WORKDIR /app
 EXPOSE 8000

@@ -52,7 +52,7 @@ docs:
 	docker compose run --rm app sphinx-build -b html docs/source docs/build
 
 lint:
-	docker compose run --rm app ruff check src tests
+	docker compose run --rm -e PYTHONPATH=/app/src app ruff check --no-cache src tests
 
 format:
 	docker compose run --rm app black src tests && docker compose run --rm app isort src tests
