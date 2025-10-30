@@ -1,3 +1,10 @@
+
+"""
+Main FastAPI application entry point.
+
+Initializes the FastAPI app, configures health and readiness endpoints, and includes the API router.
+"""
+
 from fastapi import FastAPI, Response
 from src.app.api.api import api_router
 from src.app.core.config import settings
@@ -9,10 +16,22 @@ app = FastAPI(
 
 @app.get("/healthz", status_code=200)
 def healthz() -> Response:
+    """
+    Health check endpoint.
+
+    Returns:
+        Response: HTTP 200 if the service is healthy.
+    """
     return Response(status_code=200)
 
 @app.get("/readyz", status_code=200)
 def readyz() -> Response:
+    """
+    Readiness check endpoint.
+
+    Returns:
+        Response: HTTP 200 if the service is ready to receive traffic.
+    """
     # TODO: Add logic to check DB connection, etc.
     return Response(status_code=200)
 

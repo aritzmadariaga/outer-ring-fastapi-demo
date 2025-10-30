@@ -16,7 +16,38 @@ The application follows a clean architecture pattern, separating concerns into t
 
 ## API Reference
 
-```eval_rst
 .. automodule:: src.app.api.v1.spacecraft
    :members:
-```
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: src.app.services.spacecraft_service
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: src.app.repositories.spacecraft_repository
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: src.app.schemas.spacecraft
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: src.app.models.spacecraft
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: src.app.core.config
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+.. automodule:: src.app.main
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
