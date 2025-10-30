@@ -6,7 +6,6 @@ from sqlalchemy import pool
 from alembic import context
 
 # Import settings and construct the database URL
-from app.core.config import settings
 from app.db.session import DATABASE_URL
 
 # this is the Alembic Config object, which provides
@@ -27,7 +26,6 @@ config.set_main_option('sqlalchemy.url', DATABASE_URL)
 # target_metadata = mymodel.Base.metadata
 from app.db.base import Base
 # Make sure all models are imported here for autogenerate to find them
-from app.models.spacecraft import Spacecraft
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
