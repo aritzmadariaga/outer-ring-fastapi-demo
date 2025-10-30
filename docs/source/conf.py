@@ -15,7 +15,15 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
     'myst_parser',
+    'sphinx_autodoc_typehints',
+    'sphinx.ext.viewcode',
+    'sphinx_copybutton',
+    'sphinx.ext.intersphinx',
 ]
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'fastapi': ('https://fastapi.tiangolo.com/', None),
+}
 
 templates_path = ['_templates']
 exclude_patterns = []

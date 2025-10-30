@@ -28,6 +28,8 @@ dev = [
     "sphinx",
     "myst-parser",
     "sphinx_rtd_theme",
+    "sphinx-autodoc-typehints",
+    "sphinx-copybutton",
     "ruff",
     "black",
     "isort",
