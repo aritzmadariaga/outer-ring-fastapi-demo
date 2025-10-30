@@ -19,6 +19,7 @@ extensions = [
     'sphinx.ext.viewcode',
     'sphinx_copybutton',
     'sphinx.ext.intersphinx',
+    'sphinxcontrib.mermaid'
 ]
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3', None),

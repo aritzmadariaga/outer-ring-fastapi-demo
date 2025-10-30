@@ -30,6 +30,7 @@ dev = [
     "sphinx_rtd_theme",
     "sphinx-autodoc-typehints",
     "sphinx-copybutton",
+    "sphinxcontrib-mermaid",
     "ruff",
     "black",
     "isort",
