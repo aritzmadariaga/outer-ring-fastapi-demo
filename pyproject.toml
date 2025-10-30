@@ -27,6 +27,7 @@ dev = [
     "httpx",
     "sphinx",
     "myst-parser",
+    "sphinx_rtd_theme",
     "ruff",
     "black",
     "isort",

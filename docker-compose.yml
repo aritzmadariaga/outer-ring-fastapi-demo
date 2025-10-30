@@ -31,6 +31,7 @@ services:
       - ./tests:/app/tests
       - ./alembic.ini:/app/alembic.ini
       - ./pyproject.toml:/app/pyproject.toml
+      - ./docs:/app/docs
     env_file:
       - .env
     ports:
