@@ -4,7 +4,16 @@
 # -- Path setup --------------------------------------------------------------
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../../src'))
+from pathlib import Path
+
+# Ensure the project `src` directory is on sys.path so autodoc can import `app`.
+# Resolve the path relative to this conf.py file (more robust inside containers/CI).
+HERE = Path(__file__).resolve().parent
+SRC_PATH = (HERE / '..' / '..' / 'src').resolve()
+sys.path.insert(0, str(SRC_PATH))
+
+# Helpful debug output in CI logs if autodoc cannot import modules.
+print(f"[sphinx.conf] inserted src to sys.path: {SRC_PATH}")
 
 project = 'Outer Ring FastAPI Base'
 copyright = '2025, Aritz Madariaga'
