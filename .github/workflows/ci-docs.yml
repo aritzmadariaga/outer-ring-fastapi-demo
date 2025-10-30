@@ -2,9 +2,12 @@ name: Build Documentation
 
 on:
   push:
-    branches: [ main ]
+    # Run on main and any ci/* branches so docs fixes can be validated on feature branches
+    branches: [ main, 'ci/**' ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, 'ci/**' ]
+  # Allow manual runs from the Actions UI for debugging/validation
+  workflow_dispatch:
 
 jobs:
   build-docs:
