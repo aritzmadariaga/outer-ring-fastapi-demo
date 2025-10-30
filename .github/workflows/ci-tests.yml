@@ -20,6 +20,8 @@ jobs:
         run: |
           pip install uv
           uv sync
+          # Install development dependencies (pytest, pytest-cov, etc.) so tests can run
+          uv pip install --system ".[dev]"
       # Note: unit tests don't require a database service in CI. If you need a DB for
       # unit tests, add a `services` block to this job similar to the `integration` job.
       # The previous explicit wait-for-DB step was removed because there is no DB
@@ -65,6 +67,8 @@ jobs:
         run: |
           pip install uv
           uv sync
+          # Install development dependencies (pytest, pytest-cov, httpx, etc.)
+          uv pip install --system ".[dev]"
       - name: Run integration tests (produce coverage files)
         env:
           COVERAGE_FILE: .coverage.integration
