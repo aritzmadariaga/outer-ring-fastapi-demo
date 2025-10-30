@@ -3,9 +3,9 @@ name: CI — Tests & Coverage
 on:
   push:
     # Run on main and any ci/* branches so CI fixes can be validated on feature branches
-    branches: [ main, 'ci/**' ]
+    branches: [ main, 'ci/docs-tests-fixes' ]
   pull_request:
-    branches: [ main, 'ci/**' ]
+    branches: [ main, 'ci/docs-tests-fixes' ]
   # Allow manual runs from the Actions UI (handy for debugging CI on feature branches)
   workflow_dispatch:
 
