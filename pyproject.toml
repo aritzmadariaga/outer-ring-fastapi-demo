@@ -42,6 +42,16 @@ dev = [
     "pre-commit",
 ]
 
+# Optional extras for documentation build and local doc contributors
+docs = [
+    "sphinx>=7.3.7",
+    "myst-parser>=3.0.1",
+    "sphinx-rtd-theme",
+    "sphinx-autodoc-typehints",
+    "sphinx-copybutton",
+    "sphinxcontrib-mermaid",
+]
+
 [tool.rye]
 managed = true
 dev-dependencies = [

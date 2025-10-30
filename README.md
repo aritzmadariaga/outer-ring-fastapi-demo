@@ -103,8 +103,42 @@ The architecture follows clean separation of concerns, with distinct layers for 
 
     ## Documentation
 
-    - Run `make docs` to build the technical documentation with Sphinx.
-    - The generated HTML docs are in `docs/build/index.html` (open in your browser).
+    - Build the technical documentation (Sphinx):
+
+        ```bash
+        # From the project root (preferred - runs inside the app container):
+        make docs
+
+        # Alternatively, build directly with sphinx-build inside the container:
+        docker compose run --rm app sphinx-build -b html docs/source docs/build
+        ```
+
+    - Developer: instalar dependencias necesarias para generar la documentación
+
+        Para que la compilación local coincida con la que ejecuta CI, hemos centralizado
+        las dependencias de documentación en un extra `docs` dentro de `pyproject.toml`.
+
+        - Usando pip (recomendado):
+
+            ```bash
+            python -m pip install --upgrade pip
+            python -m pip install ".[docs]"
+            ```
+
+        - Si usas `uv`/`rye` localmente (el proyecto incluye soporte para `uv`):
+
+            ```bash
+            pip install uv
+            uv sync
+            uv pip install --system ".[docs]"
+            ```
+
+        Después de instalar las deps de docs, ejecuta `make docs` para regenerar la salida
+        en `docs/build`. Los HTML generados los puedes abrir en `docs/build/index.html`.
+
+    - CI: La acción de GitHub Actions que construye la documentación instala `.[docs]`
+        desde `pyproject.toml` antes de ejecutar `sphinx-build -W`, de modo que los
+        paquetes usados en CI y local coinciden.
 
     ## Coverage and Codecov
 

@@ -19,6 +19,7 @@ jobs:
         run: |
           pip install uv
           uv sync
-          uv pip install --system sphinx sphinx_rtd_theme myst-parser
+          # Install project extras for building docs (centralized in pyproject.toml)
+          uv pip install --system ".[docs]"
       - name: Build Sphinx Documentation
         run: sphinx-build -b html docs/source docs/build -W
