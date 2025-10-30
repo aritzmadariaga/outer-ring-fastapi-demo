@@ -22,8 +22,8 @@ app = FastAPI(
         "email": "aritzmadariaga@deusto.es"
     },
     license_info={
-        "name": "MIT",
-        "url": "https://opensource.org/licenses/MIT"
+        "name": "GNU General Public License v3.0 (GPL-3.0-or-later)",
+        "url": "https://www.gnu.org/licenses/gpl-3.0.html"
     },
     openapi_url=f"{settings.API_V1_STR}/openapi.json"
 )

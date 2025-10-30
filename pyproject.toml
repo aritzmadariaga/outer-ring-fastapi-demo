@@ -2,7 +2,8 @@
 name = "outer-ring-fastapi-base"
 version = "0.1.0"
 description = "A fully containerized, secure, and reproducible FastAPI platform."
-authors = [{ name = "Your Name", email = "you@example.com" }]
+authors = [{ name = "Aritz Madariaga", email = "aritzmadariaga@deusto.es" }]
+license = { file = "LICENSE" }
 requires-python = ">=3.12"
 dependencies = [
     "fastapi",

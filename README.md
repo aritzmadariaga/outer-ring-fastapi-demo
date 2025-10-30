@@ -1,5 +1,13 @@
 # Outer Ring FastAPI Base
 
+![Lint & Type](https://github.com/aritzmadariaga/outer-ring-fastapi-demo/actions/workflows/ci-lint-type.yml/badge.svg?branch=main)
+![Tests](https://github.com/aritzmadariaga/outer-ring-fastapi-demo/actions/workflows/ci-tests.yml/badge.svg?branch=main)
+![Codecov](https://codecov.io/gh/aritzmadariaga/outer-ring-fastapi-demo/branch/main/graph/badge.svg)
+![Docs](https://github.com/aritzmadariaga/outer-ring-fastapi-demo/actions/workflows/ci-docs.yml/badge.svg?branch=main)
+![Docker Build](https://github.com/aritzmadariaga/outer-ring-fastapi-demo/actions/workflows/ci-docker.yml/badge.svg?branch=main)
+[![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue.svg)](https://spdx.org/licenses/GPL-3.0-or-later.html)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+
 A fully containerized, secure, and reproducible FastAPI platform — built for scalability, observability, and developer efficiency.
 
 ## Overview
@@ -98,6 +106,19 @@ The architecture follows clean separation of concerns, with distinct layers for 
     - Run `make docs` to build the technical documentation with Sphinx.
     - The generated HTML docs are in `docs/build/index.html` (open in your browser).
 
+    ## Coverage and Codecov
+
+
+    This project uploads coverage reports to Codecov from CI. The workflow `CI — Tests & Coverage` runs unit and integration tests in separate jobs, combines their coverage data, and uploads a single `coverage.xml` per commit so Codecov can present a merged report.
+
+    - If your repository is private, add the secret `CODECOV_TOKEN` to GitHub (Settings → Secrets → Actions) with the token provided by Codecov. The CI action uses that token automatically.
+    - To run locally and generate a coverage file before pushing:
+    ```bash
+    pytest --cov=src --cov-report=xml:coverage.xml
+    ```
+
+    If you prefer the upload not to fail CI when Codecov is unreachable, edit the workflow step `fail_ci_if_error: true` to `false`.
+
     ## Local Development with uv
 
     If you want to install dependencies locally (outside Docker):
@@ -133,7 +154,7 @@ The architecture follows clean separation of concerns, with distinct layers for 
 
     ## License
 
-    This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+    This project is licensed under the GNU General Public License v3.0 (GPL-3.0-or-later). See the [LICENSE](LICENSE) file for details.
 
     ## Contact
 
