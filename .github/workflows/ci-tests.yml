@@ -20,30 +20,10 @@ jobs:
         run: |
           pip install uv
           uv sync
-      - name: Wait for MariaDB to be ready
-        env:
-          DB_HOST: 127.0.0.1
-          DB_PORT: 3306
-        run: |
-          python - <<'PY'
-          import socket, time, os, sys
-          host = os.environ.get('DB_HOST', '127.0.0.1')
-          port = int(os.environ.get('DB_PORT', '3306'))
-          timeout = 60
-          interval = 2
-          deadline = time.time() + timeout
-          while time.time() < deadline:
-              try:
-                  s = socket.create_connection((host, port), timeout=2)
-                  s.close()
-                  print(f"DB reachable at {host}:{port}")
-                  sys.exit(0)
-              except Exception as e:
-                  print(f"Waiting for DB {host}:{port}: {e}")
-                  time.sleep(interval)
-          print("Timed out waiting for DB")
-          sys.exit(1)
-          PY
+      # Note: unit tests don't require a database service in CI. If you need a DB for
+      # unit tests, add a `services` block to this job similar to the `integration` job.
+      # The previous explicit wait-for-DB step was removed because there is no DB
+      # service configured for the `unit` job and it caused connection refused errors.
       - name: Run unit tests (produce coverage files)
         env:
           COVERAGE_FILE: .coverage.unit
