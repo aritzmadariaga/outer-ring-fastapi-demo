@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from src.app.db.session import SessionLocal
-from src.app.models.spacecraft import Spacecraft
+from app.db.session import SessionLocal
+from app.models.spacecraft import Spacecraft
 
 def seed_data(db: Session) -> None:
     # Create sample spacecraft

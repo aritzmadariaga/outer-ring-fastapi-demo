@@ -9,9 +9,9 @@ the SpacecraftService for business logic.
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from src.app.services.spacecraft_service import SpacecraftService
-from src.app.schemas.spacecraft import SpacecraftCreate, SpacecraftUpdate, SpacecraftInDB
-from src.app.db.dependencies import get_db
+from app.services.spacecraft_service import SpacecraftService
+from app.schemas.spacecraft import SpacecraftCreate, SpacecraftUpdate, SpacecraftInDB
+from app.db.dependencies import get_db
 
 router = APIRouter()
 

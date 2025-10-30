@@ -7,9 +7,9 @@ Initializes the FastAPI app, configures health and readiness endpoints, and incl
 
 from fastapi import FastAPI, Response, status
 from sqlalchemy import text
-from src.app.db.session import engine
-from src.app.api.api import api_router
-from src.app.core.config import settings
+from app.db.session import engine
+from app.api.api import api_router
+from app.core.config import settings
 
 app = FastAPI(
     title="Outer Ring FastAPI Base",

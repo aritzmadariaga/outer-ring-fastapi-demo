@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock
-from src.app.services.spacecraft_service import SpacecraftService
-from src.app.schemas.spacecraft import SpacecraftCreate
+from app.services.spacecraft_service import SpacecraftService
+from app.schemas.spacecraft import SpacecraftCreate
 
 def test_create_spacecraft_service():
     db_session = MagicMock()

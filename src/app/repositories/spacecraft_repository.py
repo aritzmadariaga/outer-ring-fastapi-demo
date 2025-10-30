@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
-from src.app.models.spacecraft import Spacecraft
-from src.app.schemas.spacecraft import SpacecraftCreate, SpacecraftUpdate
+from app.models.spacecraft import Spacecraft
+from app.schemas.spacecraft import SpacecraftCreate, SpacecraftUpdate
 
 
 class SpacecraftRepository:

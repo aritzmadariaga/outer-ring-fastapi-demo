@@ -164,7 +164,7 @@ The architecture follows clean separation of concerns, with distinct layers for 
     You can then run the app with:
 
     ```bash
-    uvicorn src.app.main:app --reload
+    uvicorn app.main:app --reload
     ```
 
     ## Development Workflow

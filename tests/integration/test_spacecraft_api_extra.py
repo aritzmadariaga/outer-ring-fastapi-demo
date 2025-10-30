@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from sqlalchemy.orm import Session
-from src.app.main import app
-from src.app.schemas.spacecraft import SpacecraftCreate, SpacecraftUpdate
+from app.main import app
+from app.schemas.spacecraft import SpacecraftCreate, SpacecraftUpdate
 import pytest
 
 client = TestClient(app)

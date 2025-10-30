@@ -6,8 +6,8 @@ from sqlalchemy import pool
 from alembic import context
 
 # Import settings and construct the database URL
-from src.app.core.config import settings
-from src.app.db.session import DATABASE_URL
+from app.core.config import settings
+from app.db.session import DATABASE_URL
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -25,9 +25,9 @@ config.set_main_option('sqlalchemy.url', DATABASE_URL)
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from src.app.db.base import Base
+from app.db.base import Base
 # Make sure all models are imported here for autogenerate to find them
-from src.app.models.spacecraft import Spacecraft
+from app.models.spacecraft import Spacecraft
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,

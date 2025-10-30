@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, func
-from src.app.db.base import Base
+from app.db.base import Base
 
 
 class Spacecraft(Base):

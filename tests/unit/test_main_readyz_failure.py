@@ -2,8 +2,8 @@ from fastapi.testclient import TestClient
 from types import SimpleNamespace
 import pytest
 
-import src.app.main as main_mod
-from src.app.core.config import settings
+import app.main as main_mod
+from app.core.config import settings
 
 
 client = TestClient(main_mod.app)
