@@ -44,7 +44,8 @@ integration:
 	docker compose run --rm app pytest tests/integration
 
 test:
-	docker compose run --rm app pytest --cov=src/app --cov-report=term-missing --cov-fail-under=85
+	rm -f .coverage*
+	docker compose run --rm -e COVERAGE_FILE=/app/.coverage app pytest --cov=src/app --cov-report=term-missing --cov-fail-under=85
 
 docs:
 	docker compose run --rm app sphinx-build -b html docs/source docs/build
