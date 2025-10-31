@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock
 from app.repositories.spacecraft_repository import SpacecraftRepository
 from app.schemas.spacecraft import SpacecraftCreate, SpacecraftUpdate
-import pytest
 
 
 def test_create_repository():

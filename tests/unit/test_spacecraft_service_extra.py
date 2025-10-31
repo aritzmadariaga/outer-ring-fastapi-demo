@@ -1,7 +1,7 @@
 from unittest.mock import MagicMock
 import pytest
 from app.services.spacecraft_service import SpacecraftService
-from app.schemas.spacecraft import SpacecraftCreate, SpacecraftUpdate
+from app.schemas.spacecraft import SpacecraftUpdate
 
 
 @pytest.mark.usefixtures("db_session")
