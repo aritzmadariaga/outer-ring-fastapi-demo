@@ -2,10 +2,9 @@ from logging.config import fileConfig
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 from alembic import context
-from app.core.config import settings
 from app.db.session import DATABASE_URL
 from app.db.base import Base
-from app.models.spacecraft import Spacecraft
+from app.models.spacecraft import Spacecraft  # noqa: F401
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

@@ -3,8 +3,11 @@ import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import OperationalError
-from src.app.db.base import Base
-from src.app.main import app
+from typing import Generator, AsyncGenerator
+from sqlalchemy.orm import Session
+from app.db.base import Base
+from app.main import app
+from app.db.dependencies import get_db
 from httpx import AsyncClient
 
 # Build DB URL from environment so CI can control the host/port via env vars.
@@ -40,7 +43,7 @@ except OperationalError:
     Base.metadata.create_all(bind=engine)
 
 @pytest.fixture(scope="function")
-def db_session():
+def db_session() -> Generator[Session, None, None]:
     connection = engine.connect()
     transaction = connection.begin()
     session = TestingSessionLocal(bind=connection)
@@ -50,8 +53,8 @@ def db_session():
     connection.close()
 
 @pytest.fixture(scope="function")
-async def client(db_session):
-    def override_get_db():
+async def client(db_session: Session) -> AsyncGenerator[AsyncClient, None]:
+    def override_get_db() -> Generator[Session, None, None]:
         try:
             yield db_session
         finally:
