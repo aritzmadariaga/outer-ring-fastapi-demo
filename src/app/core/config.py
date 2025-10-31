@@ -1,5 +1,4 @@
 from pydantic_settings import BaseSettings
-from pydantic import ConfigDict
 
 
 class Settings(BaseSettings):
@@ -8,6 +7,7 @@ class Settings(BaseSettings):
 
     Loads environment variables from .env file and provides access to project and database settings.
     """
+
     PROJECT_NAME: str = "Outer Ring FastAPI Base"  #: :no-index:
     API_V1_STR: str = "/api/v1"  #: :no-index:
 
@@ -17,6 +17,8 @@ class Settings(BaseSettings):
     DB_PASSWORD: str  #: :no-index:
     DB_NAME: str  #: :no-index:
 
-    model_config = ConfigDict(env_file=".env")
+    class Config:
+        env_file = ".env"
+
 
 settings = Settings()

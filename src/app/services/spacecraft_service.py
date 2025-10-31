@@ -11,6 +11,7 @@ class SpacecraftService:
     using the SpacecraftRepository. It abstracts the repository and can contain additional
     business rules or validations in the future.
     """
+
     def __init__(self, db: Session):
         """
         Initialize the SpacecraftService.
@@ -20,7 +21,9 @@ class SpacecraftService:
         """
         self.repository = SpacecraftRepository(db)
 
-    def create_spacecraft(self, spacecraft: SpacecraftCreate):
+    from app.models.spacecraft import Spacecraft
+
+    def create_spacecraft(self, spacecraft: SpacecraftCreate) -> "Spacecraft":
         """
         Create a new spacecraft.
 
@@ -32,7 +35,7 @@ class SpacecraftService:
         """
         return self.repository.create(spacecraft)
 
-    def get_spacecraft(self, spacecraft_id: int):
+    def get_spacecraft(self, spacecraft_id: int) -> "Spacecraft | None":
         """
         Retrieve a spacecraft by its ID.
 
@@ -44,7 +47,9 @@ class SpacecraftService:
         """
         return self.repository.get(spacecraft_id)
 
-    def get_all_spacecrafts(self, skip: int = 0, limit: int = 100):
+    def get_all_spacecrafts(
+        self, skip: int = 0, limit: int = 100
+    ) -> list["Spacecraft"]:
         """
         List all spacecrafts with pagination.
 
@@ -57,7 +62,9 @@ class SpacecraftService:
         """
         return self.repository.get_all(skip, limit)
 
-    def update_spacecraft(self, spacecraft_id: int, spacecraft: SpacecraftUpdate):
+    def update_spacecraft(
+        self, spacecraft_id: int, spacecraft: SpacecraftUpdate
+    ) -> "Spacecraft | None":
         """
         Update an existing spacecraft by its ID.
 
@@ -70,7 +77,7 @@ class SpacecraftService:
         """
         return self.repository.update(spacecraft_id, spacecraft)
 
-    def delete_spacecraft(self, spacecraft_id: int):
+    def delete_spacecraft(self, spacecraft_id: int) -> "Spacecraft | None":
         """
         Delete a spacecraft by its ID.
 

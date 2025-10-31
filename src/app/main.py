@@ -1,4 +1,3 @@
-
 """
 Main FastAPI application entry point.
 
@@ -14,19 +13,17 @@ from app.core.config import settings
 app = FastAPI(
     title="Outer Ring FastAPI Base",
     description="A robust, scalable FastAPI backend for spacecraft management.\n\n"
-                "This API allows you to create, retrieve, update, and delete spacecraft records, "
-                "with full OpenAPI/Swagger documentation, professional error handling, and best practices.",
+    "This API allows you to create, retrieve, update, and delete spacecraft records, "
+    "with full OpenAPI/Swagger documentation, professional error handling, and best practices.",
     version="0.1.0",
-    contact={
-        "name": "Aritz Madariaga",
-        "email": "aritzmadariaga@deusto.es"
-    },
+    contact={"name": "Aritz Madariaga", "email": "aritzmadariaga@deusto.es"},
     license_info={
         "name": "GNU General Public License v3.0 (GPL-3.0-or-later)",
-        "url": "https://www.gnu.org/licenses/gpl-3.0.html"
+        "url": "https://www.gnu.org/licenses/gpl-3.0.html",
     },
-    openapi_url=f"{settings.API_V1_STR}/openapi.json"
+    openapi_url=f"{settings.API_V1_STR}/openapi.json",
 )
+
 
 @app.get("/healthz", status_code=200)
 def healthz() -> Response:
@@ -55,5 +52,6 @@ def readyz() -> Response:
         return Response(status_code=200)
     except Exception:
         return Response(status_code=status.HTTP_503_SERVICE_UNAVAILABLE)
+
 
 app.include_router(api_router, prefix=settings.API_V1_STR)

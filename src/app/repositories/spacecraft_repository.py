@@ -10,6 +10,7 @@ class SpacecraftRepository:
     Provides methods to create, retrieve, list, update, and delete spacecraft records
     in the database using SQLAlchemy ORM.
     """
+
     def __init__(self, db: Session):
         """
         Initialize the SpacecraftRepository.
@@ -60,7 +61,9 @@ class SpacecraftRepository:
         """
         return self.db.query(Spacecraft).offset(skip).limit(limit).all()
 
-    def update(self, spacecraft_id: int, spacecraft: SpacecraftUpdate) -> Spacecraft | None:
+    def update(
+        self, spacecraft_id: int, spacecraft: SpacecraftUpdate
+    ) -> Spacecraft | None:
         """
         Update an existing spacecraft record by its ID.
 

@@ -22,9 +22,13 @@ USE_SQLITE = os.getenv("TEST_SQLITE", "0") == "1"
 
 if USE_SQLITE:
     SQLALCHEMY_DATABASE_URL = "sqlite+pysqlite:///:memory:"
-    engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+    engine = create_engine(
+        SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    )
 else:
-    SQLALCHEMY_DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    SQLALCHEMY_DATABASE_URL = (
+        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    )
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -38,9 +42,12 @@ try:
 except OperationalError:
     # Fallback: use sqlite memory DB for tests to avoid external dependency
     SQLALCHEMY_DATABASE_URL = "sqlite+pysqlite:///:memory:"
-    engine = create_engine(SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False})
+    engine = create_engine(
+        SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+    )
     TestingSessionLocal.configure(bind=engine)
     Base.metadata.create_all(bind=engine)
+
 
 @pytest.fixture(scope="function")
 def db_session() -> Generator[Session, None, None]:
@@ -51,6 +58,7 @@ def db_session() -> Generator[Session, None, None]:
     session.close()
     transaction.rollback()
     connection.close()
+
 
 @pytest.fixture(scope="function")
 async def client(db_session: Session) -> AsyncGenerator[AsyncClient, None]:
