@@ -2,10 +2,10 @@ name: Lint and Type Checking
 
 on:
   push:
-    # Run on main and any ci/* branches so CI fixes can be validated on feature branches
-    branches: [ main, 'ci/**' ]
+    # Run on main and the ci/fix-linting-errors branch to validate linting fixes
+    branches: [ main, 'ci/fix-linting-errors' ]
   pull_request:
-    branches: [ main, 'ci/**' ]
+    branches: [ main, 'ci/fix-linting-errors' ]
   # Allow manual runs from the Actions UI (handy for debugging CI on feature branches)
   workflow_dispatch:
 
