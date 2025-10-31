@@ -27,7 +27,7 @@ router = APIRouter()
         409: {"description": "Spacecraft with this registry code already exists."},
     },
 )
-def create_spacecraft(spacecraft: SpacecraftCreate, db: Session = Depends(get_db)):
+def create_spacecraft(spacecraft: SpacecraftCreate, db: Session = Depends(get_db)) -> SpacecraftInDB:
     """
     Create a new spacecraft.
 
@@ -53,7 +53,7 @@ def create_spacecraft(spacecraft: SpacecraftCreate, db: Session = Depends(get_db
         404: {"description": "Spacecraft not found."},
     },
 )
-def read_spacecraft(spacecraft_id: int, db: Session = Depends(get_db)):
+def read_spacecraft(spacecraft_id: int, db: Session = Depends(get_db)) -> SpacecraftInDB:
     """
     Retrieve a spacecraft by its ID.
 
@@ -82,7 +82,8 @@ def read_spacecraft(spacecraft_id: int, db: Session = Depends(get_db)):
     description="List all spacecrafts with pagination support.",
     responses={200: {"description": "List of spacecrafts returned."}},
 )
-def read_spacecrafts(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+from typing import List
+def read_spacecrafts(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)) -> List[SpacecraftInDB]:
     """
     List all spacecrafts with pagination.
 
@@ -112,7 +113,7 @@ def read_spacecrafts(skip: int = 0, limit: int = 100, db: Session = Depends(get_
 )
 def update_spacecraft(
     spacecraft_id: int, spacecraft: SpacecraftUpdate, db: Session = Depends(get_db)
-):
+) -> SpacecraftInDB:
     """
     Update an existing spacecraft by its ID.
 
@@ -145,7 +146,7 @@ def update_spacecraft(
         404: {"description": "Spacecraft not found."},
     },
 )
-def delete_spacecraft(spacecraft_id: int, db: Session = Depends(get_db)):
+def delete_spacecraft(spacecraft_id: int, db: Session = Depends(get_db)) -> SpacecraftInDB:
     """
     Delete a spacecraft by its ID.
 

@@ -40,6 +40,9 @@ dev = [
     "pytest-xdist",
     "typer",
     "pre-commit",
+    "sqlalchemy2-stubs",
+    "pydantic[email]",
+    "types-python-dateutil",
 ]
 
 # Optional extras for documentation build and local doc contributors
